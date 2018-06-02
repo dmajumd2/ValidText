@@ -1,0 +1,6 @@
+this.getattribute();
+setAttribute();
+
+removeEventListner();
+setTimeOut(); // delay for fewseconds
+setInterval(); // call after evry 2 secs
