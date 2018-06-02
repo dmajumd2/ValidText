@@ -1,6 +1,5 @@
 
 var domStrings = {
-
     username: '#uname',
     password: '#pwd',
     email: '#email',
@@ -13,7 +12,6 @@ var domStrings = {
     buttonMid: '.btn',
     buttonLeft: '.btnLeft',
     buttonRight: '.btnRight'
-
 };
 
 var clicks = 0;
@@ -22,28 +20,50 @@ var arrayText2;
 var clicks = 0;
 
 document.querySelector(domStrings.save).addEventListener('click', function(){
-    var unameValidation, elem;
     if(document.querySelector(domStrings.username).value === ""){
        var h = document.getElementById("uname");
         clicks += 1;
         if(clicks <= 1){
             h.insertAdjacentHTML("afterend", "<p><span style='color:red'>Please enter the username</span></p>");
+            clicks--;
         }
     }
 
-    if(document.querySelector(domStrings.username).value === ""){
-        var h = document.getElementById("uname");
-         clicks += 1;
-         if(clicks <= 1){
-             h.insertAdjacentHTML("afterend", "<p><span style='color:red'>Please enter the username</span></p>");
+    if(document.querySelector(domStrings.password).value === ""){
+        console.log('asdas')
+        var h1 = document.getElementById("pwd");
+        console.log(h1);
+          clicks += 1;
+          if(clicks <= 1){
+             h1.insertAdjacentHTML("afterend", "<p><span style='color:red'>Please enter the password</span></p>");
+             clicks--;
          }
      }
 
-     if(document.querySelector(domStrings.username).value === ""){
-        var h = document.getElementById("uname");
+     if(document.querySelector(domStrings.email).value === ""){
+        var h = document.getElementById("email");
          clicks += 1;
          if(clicks <= 1){
-             h.insertAdjacentHTML("afterend", "<p><span style='color:red'>Please enter the username</span></p>");
+             h.insertAdjacentHTML("afterend", "<p><span style='color:red'>Please enter the email</span></p>");
+             clicks--;
+         }
+     }  
+
+     if(document.querySelector(domStrings.location).value === ""){
+        var h = document.getElementById("loc");
+         clicks += 1;
+         if(clicks <= 1){
+             h.insertAdjacentHTML("afterend", "<p><span style='color:red'>Please enter the location</span></p>");
+             clicks--;
+         }
+     }  
+
+     if(document.querySelector(domStrings.company).value === ""){
+        var h = document.getElementById("comp");
+         clicks += 1;
+         if(clicks <= 1){
+             h.insertAdjacentHTML("afterend", "<p><span style='color:red'>Please enter the company</span></p>");
+             clicks--;
          }
      }  
 });
