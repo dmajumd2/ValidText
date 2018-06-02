@@ -45,7 +45,7 @@ document.querySelector(domStrings.save).addEventListener('click', function(){
          if(clicks <= 1){
              h.insertAdjacentHTML("afterend", "<p><span style='color:red'>Please enter the username</span></p>");
          }
-     }
+     }  
 });
 
 
