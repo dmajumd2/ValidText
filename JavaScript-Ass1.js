@@ -65,8 +65,20 @@ document.querySelector(domStrings.save).addEventListener('click', function(){
              h.insertAdjacentHTML("afterend", "<p><span style='color:red'>Please enter the company</span></p>");
              clicks--;
          }
-     }  
+     }
+     
+     if(document.getElementById("male").checked != true && document.getElementById("female").checked != true){
+        var h = document.getElementById("gender");
+         clicks += 1;
+         if(clicks <= 1){
+             h.insertAdjacentHTML("afterend", "<p><span style='color:red'>Please select gender</span></p>");
+             clicks--;
+         }
+     }
 });
+
+
+
 
 
 
