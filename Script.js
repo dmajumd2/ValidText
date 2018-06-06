@@ -17,10 +17,13 @@ var domStrings = {
 var arrayText1;
 var arrayText2;
 var clicks = 0;
-
+var counter = 0;
+var btn = 0;
+var user = document.getElementById('uname');
+var users = [];
 document.querySelector(domStrings.save).addEventListener('click', function(){
     if(document.querySelector(domStrings.username).value === ""){
-       var h = document.getElementById("uname");
+        var h = document.getElementById("uname");
         clicks += 1;
         if(clicks <= 1){
             h.insertAdjacentHTML("afterend", "<p id='un'><span style='color:red'>Please enter the username</span></p>");
@@ -81,7 +84,7 @@ document.querySelector(domStrings.save).addEventListener('click', function(){
         document.getElementById("co").outerHTML = "";
      }
      
-     if(document.getElementById("male").checked != true && document.getElementById("female").checked != true){
+     if(document.getElementById("male").checked != true || document.getElementById("female").checked != true){
         var h = document.getElementById("gender");
          clicks += 1;
          if(clicks <= 1){
@@ -95,61 +98,61 @@ document.querySelector(domStrings.save).addEventListener('click', function(){
      clicks++;
      clicks++;
 
-     var users = [];
-     var counte = 0;
-     if(localStorage.a_users) {
-           (function(){
-                users = JSON.parse(localStorage.a_users);
-                var table, row, cell;
-                table = document.getElementById('table');
-                console.log(table);
-                
-                for (var i = 0; i < users.length; i++) {
-                    row = table.insertRow(-1);
-                    for (var prop in users[i]) {
-                    cell = row.insertCell();
-                    cell.innerText = users[i][prop];
-                    }
-                }
-           })();
-     }
-
-    // function displayUsers(users){
-    //     console.log(users);
-    // }
-     
+   
+    btn += 1;
+    
+    var count = 0;
         var gender;
         if(document.getElementById("male").checked == true){
-            console.log('male');
             gender = 'male';
         }
         if(document.getElementById("female").checked == true){
-            console.log('female');
             gender = 'female';
         }
-    
+
+  
+    if(document.querySelector(domStrings.username).value != "" && document.querySelector(domStrings.password).value != ""
+       && document.querySelector(domStrings.email).value != "" &&
+       document.querySelector(domStrings.location).value != "" &&
+       document.querySelector(domStrings.company).value != "" &&
+       (document.getElementById("male").checked == true || document.getElementById("female").checked == true)
+    )
+       {
         var user = {
             'username':document.getElementById('uname').value,
             'password':document.getElementById('pwd').value,
             'email': document.getElementById('email').value,
             'location': document.getElementById('loc').value,
             'company': document.getElementById('comp').value,
-            'gender': gender
-            
-            
+            'gender': gender    
         };
         users.push(user);
         localStorage.a_users = JSON.stringify(users);
-        
+        //console.log(localStorage.a_users);
+
+        if(localStorage.a_users) {
+            (function(){
+                 users = JSON.parse(localStorage.a_users);
+                 var table, row, cell;
+                 table = document.getElementById('table');
+                 counter += 1;
+                        row = table.insertRow(counter);
+                        console.log(row);
+                        var i = 0;
+
+                      for (var prop in users[i]){
+                          console.log(prop);
+                          cell = row.insertCell();
+                          cell.innerText = users[i][prop];
+                          }
+            })();
+      }
+    
+    }       
   
-});
+ });
 
-
-
-
-
-
-
+//second part----------------------------------------
 document.querySelector(domStrings.inputType1).addEventListener('keyup', function(){
     var val1 = document.querySelector(domStrings.inputType1).value;
     arrayText1 = val1.split('');
@@ -162,34 +165,65 @@ document.querySelector(domStrings.inputType2).addEventListener('keyup', function
     
 });
 
+var countingMidClick = 0;
+var flag = true;
+function stop(){
+    flag = false;  
+}
+
+var leftArray = [];
+var newData = [];
+var leftObject;
+var rightObject;
 document.querySelector(domStrings.buttonLeft).addEventListener('click', function(){
-        var offset = 0;
-        var counter = 0;
-        var array = [];
-        var str = '';
-
-        arrayText1.forEach(function(number){
-            setTimeout(function(){
-                document.getElementById("text2").value += number;
-                arrayText1.splice(0,1);
-                document.getElementById("text1").value = arrayText1;
-                }, 2000 + offset);    
-           offset += 2000;
-          });
-});
-
-document.querySelector(domStrings.buttonRight).addEventListener('click', function(){
-    var offset1 = 0;
+    clearInterval(leftObject);
+    
+    flag = true;
+    var offset = 0;
     var counter = 0;
     var array = [];
+    var left;
+    
+    left = document.getElementById("text1").value;
+    leftArray = left.split('');
+    var index=0;
+         leftObject = setInterval(function() {
+                document.getElementById('text2').value +=  left[0]; 
+                left = left.slice(1, left.length);
+                console.log(left);
+                document.getElementById('text1').value = left;
+                if(index == left.length){
+                     clearInterval(leftObject);
+                }
+        }, 1000);
+});
 
-    arrayText2.forEach(function(number){
-        setTimeout(function(){
-            document.getElementById("text1").value += number;
-            arrayText2.splice(0,1);
-            //console.log(arrayText2);
-            document.getElementById("text2").value = arrayText2;
-            }, 2000 + offset1);    
-       offset1 += 2000;
-      });
+
+document.querySelector(domStrings.buttonMid).addEventListener('click', function(){
+    clearInterval(leftObject);
+})
+
+
+document.querySelector(domStrings.buttonRight).addEventListener('click', function(){
+    clearInterval(leftObject);
+    flag = true;
+    var offset1 = 0;
+    var counter = 0;
+    var array1 = [];
+    var arrT;
+    var right;
+    arrT = document.getElementById("text2").value;
+    right = document.getElementById("text2").value;
+    leftArray = right.split('');
+    counter += 1;
+   
+    var index=0;
+    leftObject = setInterval(function() {
+                document.getElementById('text1').value = right[right.length-1] + document.getElementById('text1').value; 
+                right = right.slice(0, right.length-1);
+                document.getElementById('text2').value = right;
+                if(index == right.length){
+                     clearInterval(leftObject);
+                }
+        }, 1000);
 });

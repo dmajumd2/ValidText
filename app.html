@@ -28,34 +28,48 @@
             <input type="button" value="Save" id="btn" />
         </div>
 
-        <table border="1" style="border-collapse:collapse">
-            <tr>
-                <th>Username</th>
-                <th>Email</th>
-            </tr>
-            <tr>
-                <td>User 1</td>
-                <td>Email 1</td>
-            </tr>
-            <tr>
-                <td>User 1</td>
-                <td>Email 1</td>
-            </tr>
-            <tr>
-                <td>User 1</td>
-                <td>Email 1</td>
-            </tr>
+        <table border="1" style="border-collapse:collapse" id="table">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Password</th>
+                    <th>Email</th>
+                    <th>Location</th>
+                    <th>Company</th>
+                    <th>Gender</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
         </table>
+
+
+         
+                
+           
+            <!-- <tr>
+                <td>User 1</td>
+                <td>Password</td>
+                <td>Email</td>
+                <td>Location</td>
+                <td>Company</td>
+                <td>Gender</td>
+            </tr>
+            <tr>
+                <td>User 1</td>
+                <td>Email 1</td>
+            </tr> -->
+            
          <br /></br />
         <div>
             <input id="text1" type="text" value="" />
             <input id="text2" type="text" value="" /> <br /></br />
             <button class="btnLeft">>></button>
-            <button class="btn">||</button>
+            <button class="btn" id="midBtn" onclick="stop();">||</button>
             <button class="btnRight"><<</button>
         </div>
         <p>Clicks: <a id="clicks">0</a></p>
         <div id="Result"></div> 
-        <script src="JavaScript-Ass1.js"></script>
+        <script src="Script.js"></script>
     </body>
 </html>
