@@ -1,3 +1,14 @@
+var users = [];
+var counter = 0;
+if(localStorage.a_users) {
+    users = JSON.parse(localStorage.a_users);
+    for(var i = 0; i < users.length; i++){
+        load(users);
+    }
+    //console.log(counter);
+    
+    
+}
 
 var domStrings = {
     username: '#uname',
@@ -17,11 +28,12 @@ var domStrings = {
 var arrayText1;
 var arrayText2;
 var clicks = 0;
-var counter = 0;
+
 var btn = 0;
 var user = document.getElementById('uname');
-var users = [];
+
 document.querySelector(domStrings.save).addEventListener('click', function(){
+    
     if(document.querySelector(domStrings.username).value === ""){
         var h = document.getElementById("uname");
         clicks += 1;
@@ -129,28 +141,52 @@ document.querySelector(domStrings.save).addEventListener('click', function(){
         users.push(user);
         localStorage.a_users = JSON.stringify(users);
         //console.log(localStorage.a_users);
+         
+         //if(localStorage.a_users) {
+            users = JSON.parse(localStorage.a_users);
+            //counter += 1;
+            //console.log(users);
+             load(users);
 
-        if(localStorage.a_users) {
-            (function(){
-                 users = JSON.parse(localStorage.a_users);
+            // (function(){
+            //      users = JSON.parse(localStorage.a_users);
+            //      var table, row, cell;
+            //      table = document.getElementById('table');
+            //      counter += 1;
+            //             row = table.insertRow(counter);
+            //             console.log(row);
+            //             var i = 0;
+
+            //           for (var prop in users[i]){
+            //               console.log(prop);
+            //               cell = row.insertCell();
+            //               cell.innerText = users[i][prop];
+            //               }
+            // })();
+
+
+      //}
+      
+    
+    }     
+    
+  
+ });
+
+ function load(users) {
+
+    //console.log(counter);
+         //users = JSON.parse(localStorage.a_users);
                  var table, row, cell;
                  table = document.getElementById('table');
                  counter += 1;
                         row = table.insertRow(counter);
-                        console.log(row);
                         var i = 0;
-
                       for (var prop in users[i]){
-                          console.log(prop);
                           cell = row.insertCell();
                           cell.innerText = users[i][prop];
-                          }
-            })();
-      }
-    
-    }       
-  
- });
+                }
+  }  
 
 //second part----------------------------------------
 document.querySelector(domStrings.inputType1).addEventListener('keyup', function(){
